@@ -1,5 +1,7 @@
 <?php
 
+App::bind('Repositories\RecordRepository', 'Repositories\DbRecordRepository');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -15,3 +17,5 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::resource('records', 'RecordController', ['only' => ['index', 'create', 'store']]);

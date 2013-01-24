@@ -1,6 +1,8 @@
 {
 	"require": {
-		"laravel/framework": "4.0.*"
+		"laravel/framework": "4.0.*",
+        "meido/form": "1.1.*",
+        "meido/html": "1.1.*"
 	},
 	"autoload": {
 		"classmap": [
