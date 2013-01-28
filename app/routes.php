@@ -15,7 +15,7 @@ App::bind('Repositories\RecordRepository', 'Repositories\DbRecordRepository');
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return Redirect::to('records');
 });
 
 Route::resource('records', 'RecordController', ['only' => ['index', 'create', 'store']]);
