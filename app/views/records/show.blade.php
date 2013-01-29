@@ -3,7 +3,7 @@
 @section('content')
   <div class="row">
     <div class="span12">
-      <h2>{{ $stage }}</h2>
+      <h2>{{ $stage->name }}</h2>
     </div>
   </div>
   <div class="row">

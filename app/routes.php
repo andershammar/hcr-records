@@ -1,6 +1,14 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Application Bindings
+|--------------------------------------------------------------------------
+|
+*/
+
 App::bind('Repositories\RecordRepository', 'Repositories\DbRecordRepository');
+App::bind('Repositories\StageRepository', 'Repositories\DbStageRepository');
 
 /*
 |--------------------------------------------------------------------------

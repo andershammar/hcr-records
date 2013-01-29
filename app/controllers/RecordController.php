@@ -1,15 +1,19 @@
 <?php
 
 use Repositories\RecordRepository;
+use Repositories\StageRepository;
 
 class RecordController extends BaseController {
 
     protected $records;
+    protected $stages;
 
-    public function __construct(RecordRepository $records)
+    public function __construct(RecordRepository $records, StageRepository $stages)
     {
         parent::__construct();
+
         $this->records = $records;
+        $this->stages = $stages;
     }
 
 	/**
@@ -31,7 +35,7 @@ class RecordController extends BaseController {
     public function show($id)
     {
         return View::make('records.show')
-            ->with('stage', 'Countryside')
+            ->with('stage', $this->stages->getStage($id))
             ->with('records', $this->records->getAllRecordsForStage($id));
     }
 
@@ -43,7 +47,7 @@ class RecordController extends BaseController {
 	public function create()
 	{
 		return View::make('records.create')
-            ->with('stages', $this->records->getStages())
+            ->with('stages', $this->stages->getAllStages())
             ->with('vehicles', $this->records->getVehicles());
 	}
 

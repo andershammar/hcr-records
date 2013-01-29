@@ -37,14 +37,6 @@ class DbRecordRepository implements RecordRepository
                 'meters' => $input['meters']]);
     }
 
-    public function getStages()
-    {
-        foreach (DB::table('stages')->orderBy('id')->get() as $stage) {
-            $stages[$stage->id] = $stage->name;
-        }
-        return $stages;
-    }
-
     public function getVehicles()
     {
         foreach (DB::table('vehicles')->orderBy('id')->get() as $vehicle) {
