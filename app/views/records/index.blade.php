@@ -23,7 +23,7 @@
           <tr>
             <td>{{ $player->name }}</td>
             <td>{{ $player->vehicle }}</td>
-            <td>{{ $player->meters }}</td>
+            <td>{{ $player->meters }} m</td>
           </tr>
           @endforeach
         </tbody>
