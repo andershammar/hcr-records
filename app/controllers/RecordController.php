@@ -28,7 +28,8 @@ class RecordController extends BaseController {
 	public function index()
 	{
         return View::make('records.index')
-            ->with('records', $this->records->getTopFiveRecords());
+            ->with('records', $this->records->getTopFiveRecords())
+            ->with('latest_records', $this->records->getFiveLatestRecords());
 	}
 
     /**

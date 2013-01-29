@@ -22,6 +22,13 @@ interface RecordRepository
     public function getAllRecordsForStage($stage_id);
 
     /**
+     * Get five latest records that has been added for any stage.
+     *
+     * @return array|null  Array of records, or null if no record exist
+     */
+    public function getFiveLatestRecords();
+
+    /**
      * Store a new record
      */
     public function storeRecord($input);

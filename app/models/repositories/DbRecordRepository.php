@@ -24,6 +24,14 @@ class DbRecordRepository implements RecordRepository
         return $this->appendMedals($this->getRecords($stage_id));
     }
 
+    public function getFiveLatestRecords()
+    {
+        return DB::select('SELECT r.id, s.name AS stage, p.name AS name, v.name AS vehicle, meters
+            FROM records r, stages s, players p, vehicles v
+            WHERE stage_id = s.id AND vehicle_id = v.id AND player_id = p.id
+            ORDER BY id DESC LIMIT 5');
+    }
+
     public function storeRecord($input)
     {
         $name = strtolower($input['player']);

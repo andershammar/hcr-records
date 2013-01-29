@@ -36,4 +36,18 @@
     </div>
   @endforeach
   </div>
+  <div class="row">
+    <div class="span12">
+      <h4>Latest Records</h4>
+      <ul>
+        @foreach ($latest_records as $record)
+          <li><strong>{{ $record->name }}</strong> added a new record for {{ $record->stage }} after driving {{ $record->meters }} meters in a {{ $record-> vehicle }}
+          @if ($record->vehicle == 'Unknown')
+            vehicle
+          @endif
+          </li>
+        @endforeach
+      </ul>
+    </div>
+  </div>
 @stop
