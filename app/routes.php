@@ -9,6 +9,7 @@
 
 App::bind('Repositories\RecordRepository', 'Repositories\DbRecordRepository');
 App::bind('Repositories\StageRepository', 'Repositories\DbStageRepository');
+App::bind('Repositories\VehicleRepository', 'Repositories\DbVehicleRepository');
 
 /*
 |--------------------------------------------------------------------------

@@ -2,18 +2,22 @@
 
 use Repositories\RecordRepository;
 use Repositories\StageRepository;
+use Repositories\VehicleRepository;
 
 class RecordController extends BaseController {
 
     protected $records;
     protected $stages;
+    protected $vehicles;
 
-    public function __construct(RecordRepository $records, StageRepository $stages)
+    public function __construct(RecordRepository $records, StageRepository $stages,
+        VehicleRepository $vehicles)
     {
         parent::__construct();
 
         $this->records = $records;
         $this->stages = $stages;
+        $this->vehicles = $vehicles;
     }
 
 	/**
@@ -48,7 +52,7 @@ class RecordController extends BaseController {
 	{
 		return View::make('records.create')
             ->with('stages', $this->stages->getAllStages())
-            ->with('vehicles', $this->records->getVehicles());
+            ->with('vehicles', $this->vehicles->getAllVehicles());
 	}
 
 	/**
