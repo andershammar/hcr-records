@@ -28,7 +28,7 @@
       </table>
     </div>
     <div class="span4">
-      <img src="http://placehold.it/350x200" class="img-polaroid stage-img">
+      {{ HTML::image($stage->image, null, ['class' => 'img-polaroid stage-img']) }}
     </div>
   </div>
 @stop
