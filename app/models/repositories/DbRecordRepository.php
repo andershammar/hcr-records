@@ -25,9 +25,11 @@ class DbRecordRepository implements RecordRepository
 
     public function storeRecord($input)
     {
-        $player = DB::table('players')->where('name', $input['player'])->first();
+        $name = strtolower($input['player']);
+
+        $player = DB::table('players')->where('name', $name)->first();
         if (empty($player)) {
-            $player_id = DB::table('players')->insertGetId(['name' => $input['player']]);
+            $player_id = DB::table('players')->insertGetId(['name' => $name]);
         } else {
             $player_id = $player->id;
         }
