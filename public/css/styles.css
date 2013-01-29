@@ -25,3 +25,13 @@ a:active {text-decoration:none;}
     margin-left: 20px;
     margin-top: 20px;
 }
+
+td.medal-cell {
+    width: 20px;
+    text-align: center;
+}
+
+.medal-img {
+    height: 16px;
+    width: 16px;
+}

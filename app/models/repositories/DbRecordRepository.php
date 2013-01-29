@@ -13,6 +13,7 @@ class DbRecordRepository implements RecordRepository
         foreach ($stages as $stage) {
             $records[$stage->id]['stage'] = $stage;
             $records[$stage->id]['records'] = $this->getRecords($stage->id, 5);
+            $this->appendMedals($records[$stage->id]['records']);
         }
 
         return $records;
@@ -20,7 +21,7 @@ class DbRecordRepository implements RecordRepository
 
     public function getAllRecordsForStage($stage_id)
     {
-        return $this->getRecords($stage_id);
+        return $this->appendMedals($this->getRecords($stage_id));
     }
 
     public function storeRecord($input)
@@ -56,5 +57,37 @@ class DbRecordRepository implements RecordRepository
             WHERE meters = (SELECT MAX(meters) FROM records WHERE player_id = r.player_id AND stage_id = ?)
             AND vehicle_id = v.id AND player_id = p.id
             ORDER BY meters DESC' . $limit, [$stage_id]);
+    }
+
+    private function appendMedals($records) {
+        $position = 1;
+        $current_max = $records[0]->meters;
+
+        for ($i = 0; $i < count($records); $i++) {
+            $player = $records[$i];
+            if ($player->meters >= $current_max) {
+                $player->medal = $this->getMedalForPosition($position);
+            }
+
+            if ($i + 1 < count($records)) {
+                $nextPlayer = $records[$i + 1];
+                if ($nextPlayer->meters < $current_max) {
+                    $position++;
+                    $current_max = $nextPlayer->meters;
+                }
+            }
+        }
+
+        return $records;
+    }
+
+    private function getMedalForPosition($position) {
+        if ($position == 1) {
+            return 'img/medal-gold.png';
+        } else if ($position == 2) {
+            return 'img/medal-silver.png';
+        } else if ($position == 3) {
+            return 'img/medal-bronze.png';
+        }
     }
 }

@@ -15,12 +15,17 @@
       <table class="table table-striped table-bordered table-condensed">
         <thead>
           <tr>
-            <th colspan="3">{{ HTML::to('records/' . $record['stage']->id, $record['stage']->name, ['class' => 'stage-links']) }}</th>
+            <th colspan="4">{{ HTML::to('records/' . $record['stage']->id, $record['stage']->name, ['class' => 'stage-links']) }}</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($record['records'] as $player)
           <tr>
+            <td class="medal-cell">
+            @if (isset($player->medal))
+              {{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}
+            @endif
+            </td>
             <td>{{ Text::truncate($player->name) }}</td>
             <td>{{ $player->vehicle }}</td>
             <td>{{ $player->meters }} m</td>

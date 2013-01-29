@@ -11,6 +11,7 @@
       <table class="table table-striped table-bordered table-condensed stage-table">
         <thead>
           <tr style="margin-top: 20px">
+            <th></th>
             <th>Name</th>
             <th>Vehicle</th>
             <th>Meters</th>
@@ -19,6 +20,11 @@
         <tbody>
           @foreach ($records as $player)
           <tr>
+            <td class="medal-cell">
+            @if (isset($player->medal))
+              {{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}
+            @endif
+            </td>
             <td>{{ $player->name }}</td>
             <td>{{ $player->vehicle }}</td>
             <td>{{ $player->meters }} m</td>
