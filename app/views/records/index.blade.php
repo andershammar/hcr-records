@@ -21,7 +21,7 @@
         <tbody>
           @foreach ($record['records'] as $player)
           <tr>
-            <td>{{ $player->name }}</td>
+            <td>{{ Text::truncate($player->name) }}</td>
             <td>{{ $player->vehicle }}</td>
             <td>{{ $player->meters }} m</td>
           </tr>
