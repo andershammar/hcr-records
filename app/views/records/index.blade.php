@@ -15,14 +15,9 @@
       <table class="table table-striped table-bordered table-condensed">
         <thead>
           <tr>
-            <th colspan="3">{{ $record['stage']->name }}</th>
+            <th colspan="3">{{ HTML::to('records/' . $record['stage']->id, $record['stage']->name, ['class' => 'stage-links']) }}</th>
           </tr>
-<!--           <tr>
-            <th>Player</th>
-            <th>Vehicle</th>
-            <th>Meters</th>
-          </tr>
- -->        </thead>
+        </thead>
         <tbody>
           @foreach ($record['records'] as $player)
           <tr>

@@ -5,21 +5,22 @@ use \DB;
 
 class DbRecordRepository implements RecordRepository
 {
-    public function getLongestDrive()
+    public function getTopFiveRecords()
     {
+        $records = null;
         $stages = DB::table('stages')->orderBy('id')->get();
 
         foreach ($stages as $stage) {
             $records[$stage->id]['stage'] = $stage;
-            $records[$stage->id]['records'] =
-                    DB::select('SELECT r.id, p.name AS name, v.name AS vehicle, meters
-                    FROM records r, players p, vehicles v
-                    WHERE meters = (SELECT MAX(meters) FROM records WHERE player_id = r.player_id AND stage_id = ?)
-                    AND vehicle_id = v.id AND player_id = p.id
-                    ORDER BY meters DESC LIMIT 5', [$stage->id]);
+            $records[$stage->id]['records'] = $this->getRecords($stage->id, 5);
         }
 
         return $records;
+    }
+
+    public function getAllRecordsForStage($stage_id)
+    {
+        return $this->getRecords($stage_id);
     }
 
     public function storeRecord($input)
@@ -53,4 +54,22 @@ class DbRecordRepository implements RecordRepository
 
     }
 
+    private function getRecords($stage_id, $limit = false)
+    {
+        if (empty($stage_id) || !is_numeric($stage_id)) {
+            return false;
+        }
+
+        if (!empty($limit) && is_int($limit)) {
+            $limit = ' LIMIT ' . $limit;
+        } else {
+            $limit = '';
+        }
+
+        return DB::select('SELECT r.id, p.name AS name, v.name AS vehicle, meters
+            FROM records r, players p, vehicles v
+            WHERE meters = (SELECT MAX(meters) FROM records WHERE player_id = r.player_id AND stage_id = ?)
+            AND vehicle_id = v.id AND player_id = p.id
+            ORDER BY meters DESC' . $limit, [$stage_id]);
+    }
 }

@@ -11,3 +11,17 @@ a:active {text-decoration:none;}
     font-weight: bold;
     margin-bottom: 10px;
 }
+
+.stage-links {
+    color: #333;
+    text-decoration: none;
+}
+
+.stage-table {
+    margin-top: 20px;
+}
+
+.stage-img {
+    margin-left: 20px;
+    margin-top: 20px;
+}

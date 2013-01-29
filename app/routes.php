@@ -18,4 +18,4 @@ Route::get('/', function()
 	return Redirect::to('records');
 });
 
-Route::resource('records', 'RecordController', ['only' => ['index', 'create', 'store']]);
+Route::resource('records', 'RecordController', ['only' => ['index', 'create', 'show', 'store']]);

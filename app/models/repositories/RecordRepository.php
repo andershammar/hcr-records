@@ -5,10 +5,21 @@ namespace Repositories;
 interface RecordRepository
 {
     /**
-     * Get top 5 longest drive records for each stage (only one record per player)
-     * @return array
+     * Get top five records for each stage. Only one record per
+     * player is returned.
+     *
+     * @return array|null  Array of records, or null if no record exist
      */
-    public function getLongestDrive();
+    public function getTopFiveRecords();
+
+    /**
+     * Get all records for specified stage. Only one record per
+     * player is returned.
+     *
+     * @param  int    $stage_id  The stage database id
+     * @return array|null        Array of records, or null if no record exist
+     */
+    public function getAllRecordsForStage($stage_id);
 
     /**
      * Store a new record

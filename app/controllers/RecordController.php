@@ -20,8 +20,20 @@ class RecordController extends BaseController {
 	public function index()
 	{
         return View::make('records.index')
-                ->with('records', $this->records->getLongestDrive());
+            ->with('records', $this->records->getTopFiveRecords());
 	}
+
+    /**
+     * Display one resource
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        return View::make('records.show')
+            ->with('stage', 'Countryside')
+            ->with('records', $this->records->getAllRecordsForStage($id));
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -31,8 +43,8 @@ class RecordController extends BaseController {
 	public function create()
 	{
 		return View::make('records.create')
-                ->with('stages', $this->records->getStages())
-                ->with('vehicles', $this->records->getVehicles());
+            ->with('stages', $this->records->getStages())
+            ->with('vehicles', $this->records->getVehicles());
 	}
 
 	/**
