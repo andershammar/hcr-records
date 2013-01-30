@@ -14,7 +14,7 @@ class StagesAddImageColumn extends Migration {
     {
         Schema::table('stages', function($table)
         {
-            $table->string('image');
+            $table->string('image')->nullable();
         });
 
         DB::table('stages')->where('name', 'Countryside')->update(['image' => 'img/stage-countryside.png']);
