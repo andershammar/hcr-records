@@ -26,7 +26,7 @@
               {{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}
             @endif
             </td>
-            <td>{{ Text::truncate($player->name) }}</td>
+            <td><span class="player">{{ Text::truncate($player->name) }}</span></td>
             <td>{{ $player->vehicle }}</td>
             <td>{{ $player->meters }} m</td>
           </tr>

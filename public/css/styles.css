@@ -35,3 +35,8 @@ td.medal-cell {
     height: 16px;
     width: 16px;
 }
+
+.highlighted {
+    font-weight: bold;
+    color: #d00;
+}
