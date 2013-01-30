@@ -17,7 +17,7 @@ a:active {text-decoration:none;}
     text-decoration: none;
 }
 
-.stage-table {
+.stage-table, .leaderboard-table {
     margin-top: 20px;
 }
 

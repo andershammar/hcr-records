@@ -29,6 +29,13 @@ interface RecordRepository
     public function getFiveLatestRecords();
 
     /**
+     * Get leaderboard scores.
+     *
+     * @return array|null  Array of player scores, or null if no scores exist
+     */
+    public function getLeaderboardScores();
+
+    /**
      * Store a new record
      */
     public function storeRecord($input);

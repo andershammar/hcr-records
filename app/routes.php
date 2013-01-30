@@ -28,3 +28,4 @@ Route::get('/', function()
 });
 
 Route::resource('records', 'RecordController', ['only' => ['index', 'create', 'show', 'store']]);
+Route::get('leaderboard', 'RecordController@leaderboard');

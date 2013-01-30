@@ -32,6 +32,48 @@ class DbRecordRepository implements RecordRepository
             ORDER BY id DESC LIMIT 5');
     }
 
+    public function getLeaderboardScores()
+    {
+        $players = null;
+
+        $stages = DB::table('stages')->orderBy('id')->get();
+        foreach ($stages as $stage)
+        {
+            // Get records for each stage
+            $records = $this->appendMedals($this->getRecords($stage->id));
+
+            // Summarize records for each player for current stage
+            foreach ($records as $record) {
+                $player = $record->name;
+
+                if (!isset($players[$player])) {
+                    $result = [
+                        'name' => $player,
+                        'score' => $this->getScore($record->position),
+                        'gold' => ($record->position == 1) ? 1 : 0,
+                        'silver' => ($record->position == 2) ? 1 : 0,
+                        'bronze' => ($record->position == 3) ? 1 : 0,
+                    ];
+                } else {
+                    $old = $players[$player];
+                    $result = [
+                        'name' => $player,
+                        'score' => $old['score'] + $this->getScore($record->position),
+                        'gold' => $old['gold'] + (($record->position == 1) ? 1 : 0),
+                        'silver' => $old['silver'] + (($record->position == 2) ? 1 : 0),
+                        'bronze' => $old['bronze'] + (($record->position == 3) ? 1 : 0),
+                    ];
+                }
+
+                $players[$player] = $result;
+            }
+        }
+
+        // Sort leaderboard ascending on score
+        uasort($players, [$this, 'sortLeaderboard']);
+        return $players;
+    }
+
     public function storeRecord($input)
     {
         $name = strtolower($input['player']);
@@ -74,7 +116,8 @@ class DbRecordRepository implements RecordRepository
         for ($i = 0; $i < count($records); $i++) {
             $player = $records[$i];
             if ($player->meters >= $current_max) {
-                $player->medal = $this->getMedalForPosition($position);
+                $player->medal = $this->getMedal($position);
+                $player->position = $position;
             }
 
             if ($i + 1 < count($records)) {
@@ -89,7 +132,7 @@ class DbRecordRepository implements RecordRepository
         return $records;
     }
 
-    private function getMedalForPosition($position) {
+    private function getMedal($position) {
         if ($position == 1) {
             return 'img/medal-gold.png';
         } else if ($position == 2) {
@@ -98,4 +141,23 @@ class DbRecordRepository implements RecordRepository
             return 'img/medal-bronze.png';
         }
     }
+
+    private function getScore($position) {
+        if ($position == 1) {
+            return 3;
+        } else if ($position == 2) {
+            return 2;
+        } else if ($position == 3) {
+            return 1;
+        }
+    }
+
+    private function sortLeaderboard($a, $b)
+    {
+        if ($a['score'] == $b['score']) {
+            return 0;
+        }
+        return ($a['score'] < $b['score']) ? 1 : -1;
+    }
+
 }

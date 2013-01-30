@@ -5,7 +5,8 @@
     <div class="span12">
       <h2>Records</h2>
       <div class="nav-links">
-        <a href="{{ URL::to('records/create') }}">Register a new record</a>
+        {{ HTML::to('records/create', 'Register a New Record') }} <span style="margin: 5px"> | </span>
+        {{ HTML::to('leaderboard', 'Show the Leaderboard') }}
       </div>
     </div>
   </div>
