@@ -11,16 +11,20 @@
     </div>
   </div>
   <div class="row">
-  @foreach ($records as $record)
+  @for ($i = 1; $i <= count($records); $i++)
+    @if (($i - 1) % 3 == 0)
+      </div><div class="row">
+    @endif
+
     <div class="span4">
       <table class="table table-striped table-bordered table-condensed">
         <thead>
           <tr>
-            <th colspan="4">{{ HTML::to('records/' . $record['stage']->id, $record['stage']->name, ['class' => 'stage-links']) }}</th>
+            <th colspan="4">{{ HTML::to('records/' . $records[$i]['stage']->id, $records[$i]['stage']->name, ['class' => 'stage-links']) }}</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($record['records'] as $player)
+          @foreach ($records[$i]['records'] as $player)
           <tr>
             <td class="medal-cell">
             @if (isset($player->medal))
@@ -35,7 +39,7 @@
         </tbody>
       </table>
     </div>
-  @endforeach
+  @endfor
   </div>
   <div class="row">
     <div class="span12">
