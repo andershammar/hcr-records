@@ -4,13 +4,16 @@
   <div class="row">
     <div class="span12">
       <h2>Leaderboard</h2>
+      <div class="nav-links">
+        {{ HTML::to('records', 'Home') }}
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="span10">
-      <table class="table table-striped table-bordered table-condensed leaderboard-table">
+      <table class="table table-striped table-bordered table-condensed">
         <thead>
-          <tr style="margin-top: 20px">
+          <tr>
             <th>Name</th>
             <th>Gold Medals</th>
             <th>Silver Medals</th>

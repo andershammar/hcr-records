@@ -4,11 +4,14 @@
   <div class="row">
     <div class="span12">
       <h2>{{ $stage->name }}</h2>
+      <div class="nav-links">
+        {{ HTML::to('records', 'Home') }}
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="span6">
-      <table class="table table-striped table-bordered table-condensed stage-table">
+      <table class="table table-striped table-bordered table-condensed">
         <thead>
           <tr style="margin-top: 20px">
             <th></th>
