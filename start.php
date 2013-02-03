@@ -70,6 +70,3 @@ require $app->getBootstrapFile();
 */
 
 return $app;
-
-
-
