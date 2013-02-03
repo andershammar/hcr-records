@@ -80,8 +80,13 @@ class DbRecordRepository implements RecordRepository
 
         // Get player (or create a new player if needed)
         $player = DB::table('players')->where('name', $name)->first();
+
         if (empty($player)) {
-            $player_id = DB::table('players')->insertGetId(['name' => $name]);
+            $player_id = DB::table('players')->insertGetId([
+                'name' => $name,
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime
+            ]);
         } else {
             $player_id = $player->id;
         }
@@ -99,6 +104,11 @@ class DbRecordRepository implements RecordRepository
                 'vehicle_id' => $input['vehicle'],
                 'player_id' => $player_id,
                 'meters' => $input['meters']
+            ]);
+        } else {
+            DB::table('records')->where('id', $record->id)->update([
+                'vehicle_id' => $input['vehicle'],
+                'updated_at' => new \DateTime
             ]);
         }
     }
