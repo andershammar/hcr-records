@@ -78,6 +78,7 @@ class DbRecordRepository implements RecordRepository
     {
         $name = strtolower($input['player']);
 
+        // Get player (or create a new player if needed)
         $player = DB::table('players')->where('name', $name)->first();
         if (empty($player)) {
             $player_id = DB::table('players')->insertGetId(['name' => $name]);
@@ -85,9 +86,21 @@ class DbRecordRepository implements RecordRepository
             $player_id = $player->id;
         }
 
-        DB::table('records')->insert(['stage_id' => $input['stage'],
-                'vehicle_id' => $input['vehicle'], 'player_id' => $player_id,
-                'meters' => $input['meters']]);
+        // Check if a record already exist for current player before
+        // adding a new record
+        $record = DB::table('records')->where('player_id', $player->id)
+            ->where('stage_id', $input['stage'])
+            ->where('meters', $input['meters'])
+            ->first();
+
+        if (empty($record)) {
+            DB::table('records')->insert([
+                'stage_id' => $input['stage'],
+                'vehicle_id' => $input['vehicle'],
+                'player_id' => $player_id,
+                'meters' => $input['meters']
+            ]);
+        }
     }
 
     private function getRecords($stage_id, $limit = false)
