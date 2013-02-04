@@ -13,22 +13,26 @@ class AddTimestamps extends Migration {
     {
         Schema::table('players', function($table)
         {
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
 
         Schema::table('stages', function($table)
         {
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
 
         Schema::table('vehicles', function($table)
         {
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
 
         Schema::table('records', function($table)
         {
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
 
         DB::update('UPDATE players SET created_at = ?, updated_at = ?', [

@@ -103,7 +103,9 @@ class DbRecordRepository implements RecordRepository
                 'stage_id' => $input['stage'],
                 'vehicle_id' => $input['vehicle'],
                 'player_id' => $player_id,
-                'meters' => $input['meters']
+                'meters' => $input['meters'],
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime
             ]);
         } else {
             DB::table('records')->where('id', $record->id)->update([
