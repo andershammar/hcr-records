@@ -74,6 +74,46 @@ class DbRecordRepository implements RecordRepository
         return $players;
     }
 
+    public function getLeaderboardDistanceScores()
+    {
+        $players = null;
+
+        $stages = DB::table('stages')->orderBy('id')->get();
+        foreach ($stages as $stage)
+        {
+            // Get records for each stage
+            $records = $this->getRecords($stage->id);
+
+            // Summarize records for each player for current stage
+            foreach ($records as $record) {
+                $player = $record->name;
+
+                if (!isset($players[$player])) {
+                    $result = [
+                        'name' => $player,
+                        'nbrRecords' => 1,
+                        'totalDistance' => $record->meters,
+                        'averageDistance' => $record->meters
+                    ];
+                } else {
+                    $old = $players[$player];
+                    $result = [
+                        'name' => $player,
+                        'nbrRecords' => $old['nbrRecords'] + 1,
+                        'totalDistance' => $old['totalDistance'] + $record->meters,
+                        'averageDistance' => (($old['totalDistance'] + $record->meters) / ($old['nbrRecords'] + 1))
+                    ];
+                }
+
+                $players[$player] = $result;
+            }
+        }
+
+        // Sort leaderboard ascending on distance
+        uasort($players, [$this, 'sortLeaderboardDistance']);
+        return $players;
+    }
+
     public function storeRecord($input)
     {
         $name = strtolower($input['player']);
@@ -183,6 +223,14 @@ class DbRecordRepository implements RecordRepository
             return 0;
         }
         return ($a['score'] < $b['score']) ? 1 : -1;
+    }
+
+    private function sortLeaderboardDistance($a, $b)
+    {
+        if ($a['totalDistance'] == $b['totalDistance']) {
+            return 0;
+        }
+        return ($a['totalDistance'] < $b['totalDistance']) ? 1 : -1;
     }
 
 }

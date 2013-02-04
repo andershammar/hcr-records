@@ -6,7 +6,7 @@
       <h2>Records</h2>
       <div class="nav-links">
         {{ HTML::to('records/create', 'Register a New Record') }} <span style="margin: 5px"> | </span>
-        {{ HTML::to('leaderboard', 'Show the Leaderboard') }}
+        {{ HTML::to('leaderboard?view=score', 'Show the Leaderboard') }}
       </div>
     </div>
   </div>

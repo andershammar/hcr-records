@@ -36,6 +36,13 @@ interface RecordRepository
     public function getLeaderboardScores();
 
     /**
+     * Get leaderboard distance scores.
+     *
+     * @return array|null  Array of player distance scores, or null if no distance scores exist
+     */
+    public function getLeaderboardDistanceScores();
+
+    /**
      * Store a new record
      */
     public function storeRecord($input);
