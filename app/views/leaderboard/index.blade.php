@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  @if ($view== 'score')
+  @if ($view == 'score')
     @include('leaderboard._score')
   @else
     @include('leaderboard._distance')

@@ -81,9 +81,4 @@ class RecordController extends BaseController {
         return Redirect::to('records');
 	}
 
-    public function leaderboard()
-    {
-        return View::make('records.leaderboard')
-            ->with('players', $this->records->getLeaderboardScores());
-    }
 }
