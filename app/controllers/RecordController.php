@@ -41,6 +41,8 @@ class RecordController extends BaseController {
     {
         return View::make('records.show')
             ->with('stage', $this->stages->getStage($id))
+            ->with('next', $this->stages->getNextStage($id))
+            ->with('prev', $this->stages->getPreviousStage($id))
             ->with('records', $this->records->getAllRecordsForStage($id));
     }
 

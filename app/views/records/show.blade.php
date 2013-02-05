@@ -6,6 +6,14 @@
       <h2>{{ $stage->name }}</h2>
       <div class="nav-links">
         {{ HTML::to('records', 'Home') }}
+        @if (!empty($prev))
+          <span style="margin: 5px"> | </span>
+          {{ HTML::to('records/' . $prev->id, 'Previous Stage') }}
+        @endif
+        @if (!empty($next))
+          <span style="margin: 5px"> | </span>
+          {{ HTML::to('records/' . $next->id, 'Next Stage') }}
+        @endif
       </div>
     </div>
   </div>
