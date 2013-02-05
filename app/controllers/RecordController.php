@@ -20,17 +20,17 @@ class RecordController extends BaseController {
         $this->vehicles = $vehicles;
     }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
         return View::make('records.index')
             ->with('records', $this->records->getTopFiveRecords())
             ->with('latest_records', $this->records->getFiveLatestRecords());
-	}
+    }
 
     /**
      * Display one resource
@@ -46,25 +46,25 @@ class RecordController extends BaseController {
             ->with('records', $this->records->getAllRecordsForStage($id));
     }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('records.create')
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return View::make('records.create')
             ->with('stages', $this->stages->getAllStages())
             ->with('vehicles', $this->vehicles->getAllVehicles());
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
         $input = Input::all();
         $rules = [
             'player' => ['required'],
@@ -77,8 +77,8 @@ class RecordController extends BaseController {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
-		$this->records->storeRecord($input);
+        $this->records->storeRecord($input);
         return Redirect::to('records');
-	}
+    }
 
 }

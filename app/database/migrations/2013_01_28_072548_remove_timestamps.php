@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 
 class RemoveTimestamps extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
         Schema::table('players', function($table)
         {
             $table->dropColumn('created_at');
@@ -34,16 +34,16 @@ class RemoveTimestamps extends Migration {
             $table->dropColumn('created_at');
             $table->dropColumn('updated_at');
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::table('players', function($table)
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('players', function($table)
         {
             $table->timestamps();
         });
@@ -62,6 +62,6 @@ class RemoveTimestamps extends Migration {
         {
             $table->timestamps();
         });
-	}
+    }
 
 }
