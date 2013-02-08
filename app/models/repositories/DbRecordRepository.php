@@ -220,7 +220,16 @@ class DbRecordRepository implements RecordRepository
     private function sortLeaderboard($a, $b)
     {
         if ($a['score'] == $b['score']) {
-            return 0;
+            if ($a['gold'] == $b['gold']) {
+                if ($a['silver'] == $b['silver']) {
+                    if ($a['bronze'] == $b['bronze']) {
+                        return 0;
+                    }
+                    return ($a['bronze'] < $b['bronze']) ? 1 : -1;
+                }
+                return ($a['silver'] < $b['silver']) ? 1 : -1;
+            }
+            return ($a['gold'] < $b['gold']) ? 1 : -1;
         }
         return ($a['score'] < $b['score']) ? 1 : -1;
     }
