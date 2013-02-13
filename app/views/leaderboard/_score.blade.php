@@ -16,17 +16,17 @@
           <td width="153px">{{ $player['name'] }}</td>
           <td width="23%">
             @for ($i = 0; $i < $player['gold']; $i++)
-              {{ HTML::image('img/medal-gold.png', null, ['class' => 'medal-img']) }}
+              {{{ HTML::image('img/medal-gold.png', null, ['class' => 'medal-img']) }}}
             @endfor
           </td>
           <td width="23%">
             @for ($i = 0; $i < $player['silver']; $i++)
-              {{ HTML::image('img/medal-silver.png', null, ['class' => 'medal-img']) }}
+              {{{ HTML::image('img/medal-silver.png', null, ['class' => 'medal-img']) }}}
             @endfor
           </td>
           <td width="23%">
             @for ($i = 0; $i < $player['bronze']; $i++)
-              {{ HTML::image('img/medal-bronze.png', null, ['class' => 'medal-img']) }}
+              {{{ HTML::image('img/medal-bronze.png', null, ['class' => 'medal-img']) }}}
             @endfor
           </td>
           <td>{{ $player['score'] }}</td>

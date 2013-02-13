@@ -5,14 +5,14 @@
     <div class="span12">
       <h2>{{ $stage->name }}</h2>
       <div class="nav-links">
-        {{ HTML::to('records', 'Home') }}
+        {{{ HTML::to('records', 'Home') }}}
         @if (!empty($prev))
           <span style="margin: 5px"> | </span>
-          {{ HTML::to('records/' . $prev->id, 'Previous Stage') }}
+          {{{ HTML::to('records/' . $prev->id, 'Previous Stage') }}}
         @endif
         @if (!empty($next))
           <span style="margin: 5px"> | </span>
-          {{ HTML::to('records/' . $next->id, 'Next Stage') }}
+          {{{ HTML::to('records/' . $next->id, 'Next Stage') }}}
         @endif
       </div>
     </div>
@@ -33,7 +33,7 @@
           <tr>
             <td class="medal-cell">
             @if (isset($player->medal))
-              {{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}
+              {{{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}}
             @endif
             </td>
             <td>{{ $player->name }}</td>
@@ -45,7 +45,7 @@
       </table>
     </div>
     <div class="span4">
-      {{ HTML::image($stage->image, null, ['class' => 'img-polaroid stage-img']) }}
+      {{{ HTML::image($stage->image, null, ['class' => 'img-polaroid stage-img']) }}}
     </div>
   </div>
 @stop

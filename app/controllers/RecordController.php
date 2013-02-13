@@ -13,8 +13,6 @@ class RecordController extends BaseController {
     public function __construct(RecordRepository $records, StageRepository $stages,
         VehicleRepository $vehicles)
     {
-        parent::__construct();
-
         $this->records = $records;
         $this->stages = $stages;
         $this->vehicles = $vehicles;

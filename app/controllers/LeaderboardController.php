@@ -8,8 +8,6 @@ class LeaderboardController extends BaseController {
 
     public function __construct(RecordRepository $records)
     {
-        parent::__construct();
-
         $this->records = $records;
     }
 

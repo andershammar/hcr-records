@@ -5,8 +5,8 @@
     <div class="span12">
       <h2>Records</h2>
       <div class="nav-links">
-        {{ HTML::to('records/create', 'Register a New Record') }} <span style="margin: 5px"> | </span>
-        {{ HTML::to('leaderboard?view=score', 'Show the Leaderboard') }}
+        {{{ HTML::to('records/create', 'Register a New Record') }}} <span style="margin: 5px"> | </span>
+        {{{ HTML::to('leaderboard?view=score', 'Show the Leaderboard') }}}
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
       <table class="table table-striped table-bordered table-condensed">
         <thead>
           <tr>
-            <th colspan="4">{{ HTML::to('records/' . $records[$i]['stage']->id, $records[$i]['stage']->name, ['class' => 'stage-links']) }}</th>
+            <th colspan="4">{{{ HTML::to('records/' . $records[$i]['stage']->id, $records[$i]['stage']->name, ['class' => 'stage-links']) }}}</th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
           <tr>
             <td class="medal-cell">
             @if (isset($player->medal))
-              {{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}
+              {{{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}}
             @endif
             </td>
             <td><span class="player">{{ Text::truncate($player->name) }}</span></td>
