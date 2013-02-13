@@ -170,8 +170,8 @@ class DbRecordRepository implements RecordRepository
         return DB::select('SELECT r.id, p.name AS name, v.name AS vehicle, meters
             FROM records r, players p, vehicles v
             WHERE meters = (SELECT MAX(meters) FROM records WHERE player_id = r.player_id AND stage_id = ?)
-            AND vehicle_id = v.id AND player_id = p.id
-            ORDER BY meters DESC' . $limit, [$stage_id]);
+            AND vehicle_id = v.id AND player_id = p.id AND stage_id = ?
+            ORDER BY meters DESC' . $limit, [$stage_id, $stage_id]);
     }
 
     private function appendMedals($records) {
