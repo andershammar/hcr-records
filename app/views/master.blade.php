@@ -31,6 +31,7 @@
     <!-- Placed at the end of the document so that the pages load faster -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     {{{ HTML::script('js/bootstrap.min.js') }}}
+    {{{ HTML::script('js/restfulizer.js') }}}
     <script type="text/javascript">
       $('.player').dblclick(function() {
         var name = $(this).html();

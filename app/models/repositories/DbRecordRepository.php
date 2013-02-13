@@ -138,8 +138,10 @@ class DbRecordRepository implements RecordRepository
             ->where('meters', $input['meters'])
             ->first();
 
+        $record_id = null;
+
         if (empty($record)) {
-            DB::table('records')->insert([
+            $record_id = DB::table('records')->insertGetId([
                 'stage_id' => $input['stage'],
                 'vehicle_id' => $input['vehicle'],
                 'player_id' => $player_id,
@@ -153,6 +155,13 @@ class DbRecordRepository implements RecordRepository
                 'updated_at' => new \DateTime
             ]);
         }
+
+        return $record_id;
+    }
+
+    public function destroyRecord($id)
+    {
+        DB::table('records')->where('id', $id)->delete();
     }
 
     private function getRecords($stage_id, $limit = false)

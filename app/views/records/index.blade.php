@@ -3,6 +3,13 @@
 @section('content')
   <div class="row">
     <div class="span12">
+      @if (isset($new_record))
+        <div class="alert alert-block alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Success!</strong> You have added a new record.<br/>
+          <small>Click {{{ HTML::to('records/' . $new_record, 'here', ['data-method' => 'delete']) }}} to undo the last change.</small><br/>
+        </div>
+      @endif
       <h2>Records</h2>
       <div class="nav-links">
         {{{ HTML::to('records/create', 'Register a New Record') }}} <span style="margin: 5px"> | </span>

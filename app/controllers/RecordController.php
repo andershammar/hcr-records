@@ -25,9 +25,14 @@ class RecordController extends BaseController {
      */
     public function index()
     {
+        // If a record item exist in the session then a new record
+        // has been added (flash message with undo link will be shown)
+        $record = Session::get('record');
+
         return View::make('records.index')
             ->with('records', $this->records->getTopFiveRecords())
-            ->with('latest_records', $this->records->getFiveLatestRecords());
+            ->with('latest_records', $this->records->getFiveLatestRecords())
+            ->with('new_record', $record);
     }
 
     /**
@@ -75,8 +80,26 @@ class RecordController extends BaseController {
             return Redirect::back()->withInput()->withErrors($validation);
         }
 
-        $this->records->storeRecord($input);
+        $id = $this->records->storeRecord($input);
+
+        // Flash the id of the record that was added to indicate
+        // that a new record has been added
+        if (!empty($id)) {
+            Session::flash('record', $id);
+        }
+
         return Redirect::to('records');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $this->records->destroyRecord($id);
+
+        return Redirect::to('records');
+    }
 }

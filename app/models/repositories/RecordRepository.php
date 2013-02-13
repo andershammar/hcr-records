@@ -44,7 +44,13 @@ interface RecordRepository
 
     /**
      * Store a new record
+     *
+     * @return int|null  The record database id, or null if no record was added
      */
     public function storeRecord($input);
 
+    /**
+     * Delete a record
+     */
+    public function destroyRecord($id);
 }
