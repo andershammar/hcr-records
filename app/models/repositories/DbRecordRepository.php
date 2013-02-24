@@ -13,7 +13,9 @@ class DbRecordRepository implements RecordRepository
         foreach ($stages as $stage) {
             $records[$stage->id]['stage'] = $stage;
             $records[$stage->id]['records'] = $this->getRecords($stage->id, 5);
-            $this->appendMedals($records[$stage->id]['records']);
+            if (count($records[$stage->id]['records']) > 0) {
+                $this->appendMedals($records[$stage->id]['records']);
+            }
         }
 
         return $records;
@@ -21,7 +23,11 @@ class DbRecordRepository implements RecordRepository
 
     public function getAllRecordsForStage($stage_id)
     {
-        return $this->appendMedals($this->getRecords($stage_id));
+        $records = $this->getRecords($stage_id);
+        if (count($records)) {
+            $this->appendMedals($records);
+        }
+        return $records;
     }
 
     public function getFiveLatestRecords()
@@ -40,7 +46,10 @@ class DbRecordRepository implements RecordRepository
         foreach ($stages as $stage)
         {
             // Get records for each stage
-            $records = $this->appendMedals($this->getRecords($stage->id));
+            $records = $this->getRecords($stage->id);
+            if (count($records) > 0) {
+                $this->appendMedals($records);
+            }
 
             // Summarize records for each player for current stage
             foreach ($records as $record) {

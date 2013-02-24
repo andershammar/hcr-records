@@ -8,5 +8,6 @@ return [
     ['name' => 'Quad Bike'],
     ['name' => 'Race Car'],
     ['name' => 'Rally Car'],
-    ['name' => 'Tank']
+    ['name' => 'Tank'],
+    ['name' => 'Snow Mobile']
 ];

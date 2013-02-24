@@ -43,6 +43,14 @@
             <td>{{ $player->meters }} m</td>
           </tr>
           @endforeach
+          @for ($j = 0; $j < (5 - count($records[$i]['records'])); $j++)
+          <tr>
+            <td class="medal-cell"></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          @endfor
         </tbody>
       </table>
     </div>

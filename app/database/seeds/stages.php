@@ -8,5 +8,7 @@ return [
     ['name' => 'Cave'],
     ['name' => 'Moon'],
     ['name' => 'Mars'],
-    ['name' => 'Alien Planet']
+    ['name' => 'Alien Planet'],
+    ['name' => 'Arctic Cave'],
+    ['name' => 'Forest']
 ];
