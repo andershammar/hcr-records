@@ -142,7 +142,7 @@ class DbRecordRepository implements RecordRepository
 
         // Check if a record already exist for current player before
         // adding a new record
-        $record = DB::table('records')->where('player_id', $player->id)
+        $record = DB::table('records')->where('player_id', $player_id)
             ->where('stage_id', $input['stage'])
             ->where('meters', $input['meters'])
             ->first();
