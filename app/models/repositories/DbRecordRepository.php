@@ -232,6 +232,8 @@ class DbRecordRepository implements RecordRepository
             return 2;
         } else if ($position == 3) {
             return 1;
+        } else {
+            return 0;
         }
     }
 
