@@ -10,5 +10,6 @@ return [
     ['name' => 'Mars'],
     ['name' => 'Alien Planet'],
     ['name' => 'Arctic Cave'],
-    ['name' => 'Forest']
+    ['name' => 'Forest'],
+    ['name' => 'Mountain']
 ];
