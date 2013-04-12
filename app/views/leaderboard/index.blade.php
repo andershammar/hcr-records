@@ -5,12 +5,12 @@
     <div class="span12">
       <h2>Leaderboard</h2>
       <div class="nav-links">
-        {{{ HTML::to('records', 'Home') }}} <span style="margin: 5px"> | </span>
+        {{ Html::link('records', 'Home') }} <span style="margin: 5px"> | </span>
         @if ($view == 'score')
           Best Score <span style="margin: 5px"> | </span>
-          {{{ HTML::to('leaderboard?view=distance', 'Longest Distance') }}}
+          {{ Html::link('leaderboard?view=distance', 'Longest Distance') }}
         @else
-          {{{ HTML::to('leaderboard?view=score', 'Best Score') }}} <span style="margin: 5px"> | </span>
+          {{ Html::link('leaderboard?view=score', 'Best Score') }} <span style="margin: 5px"> | </span>
           Longest Distance
         @endif
       </div>

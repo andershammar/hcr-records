@@ -7,8 +7,8 @@
     <meta name="author" content="">
 
     <!-- Styles -->
-    {{{ HTML::style('css/bootstrap.min.css') }}}
-    {{{ HTML::style('css/styles.css') }}}
+    {{ Html::style('css/bootstrap.min.css') }}
+    {{ Html::style('css/styles.css') }}
     <style>
       body {
         padding-top: 20px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -30,8 +30,8 @@
     <!-- JavaScripts -->
     <!-- Placed at the end of the document so that the pages load faster -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    {{{ HTML::script('js/bootstrap.min.js') }}}
-    {{{ HTML::script('js/restfulizer.js') }}}
+    {{ Html::script('js/bootstrap.min.js') }}
+    {{ Html::script('js/restfulizer.js') }}
     <script type="text/javascript">
       $('.player').dblclick(function() {
         var name = $(this).html();

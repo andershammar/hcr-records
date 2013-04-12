@@ -7,13 +7,13 @@
         <div class="alert alert-block alert-success">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <strong>Success!</strong> You have added a new record.<br/>
-          <small>Click {{{ HTML::to('records/' . $new_record, 'here', ['data-method' => 'delete']) }}} to undo the last change.</small><br/>
+          <small>Click {{ Html::link('records/' . $new_record, 'here', ['data-method' => 'delete']) }} to undo the last change.</small><br/>
         </div>
       @endif
       <h2>Records</h2>
       <div class="nav-links">
-        {{{ HTML::to('records/create', 'Register a New Record') }}} <span style="margin: 5px"> | </span>
-        {{{ HTML::to('leaderboard?view=score', 'Show the Leaderboard') }}}
+        {{ Html::link('records/create', 'Register a New Record') }} <span style="margin: 5px"> | </span>
+        {{ Html::link('leaderboard?view=score', 'Show the Leaderboard') }}
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
       <table class="table table-striped table-bordered table-condensed">
         <thead>
           <tr>
-            <th colspan="4">{{{ HTML::to('records/' . $records[$i]['stage']->id, $records[$i]['stage']->name, ['class' => 'stage-links']) }}}</th>
+            <th colspan="4">{{ Html::link('records/' . $records[$i]['stage']->id, $records[$i]['stage']->name, ['class' => 'stage-links']) }}</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
           <tr>
             <td class="medal-cell">
             @if (isset($player->medal))
-              {{{ HTML::image($player->medal, null, ['class' => 'medal-img']) }}}
+              {{ Html::image($player->medal, null, ['class' => 'medal-img']) }}
             @endif
             </td>
             <td><span class="player">{{ Text::truncate($player->name) }}</span></td>

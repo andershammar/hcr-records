@@ -1,8 +1,6 @@
 {
 	"require": {
-		"laravel/framework": "4.0.*",
-        "meido/form": "1.1.*",
-        "meido/html": "1.1.*"
+		"laravel/framework": "4.0.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -11,7 +9,7 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-            "app/libraries",
+			"app/libraries",
 			"app/tests/TestCase.php"
 		]
 	},
