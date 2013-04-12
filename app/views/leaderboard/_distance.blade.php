@@ -12,7 +12,7 @@
       <tbody>
         @foreach ($players as $player)
         <tr>
-          <td>{{ $player['name'] }}</td>
+          <td>{{ Text::truncate($player['name'], 24) }}</td>
           <td>{{ $player['nbrRecords'] }}</td>
           <td>{{ $player['totalDistance'] }} m</td>
           <td>{{ round($player['averageDistance']) }} m</td>

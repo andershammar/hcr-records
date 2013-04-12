@@ -13,7 +13,7 @@
       <tbody>
         @foreach ($players as $player)
         <tr>
-          <td width="153px">{{ $player['name'] }}</td>
+          <td width="153px">{{ Text::truncate($player['name'], 24) }}</td>
           <td width="23%">
             @for ($i = 0; $i < $player['gold']; $i++)
               {{ Html::image('img/medal-gold.png', null, ['class' => 'medal-img']) }}
